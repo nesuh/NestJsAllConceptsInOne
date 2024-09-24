@@ -12,7 +12,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth() // Add Bearer token authentication
     .build();
-  
+
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document); // Serve Swagger UI at /api
 

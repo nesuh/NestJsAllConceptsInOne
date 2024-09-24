@@ -1,15 +1,25 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class Task{
-    @ApiProperty()
-    id:number;
+@Entity('tasks') // Specify the table name in the database
+export class Task {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ApiProperty()
-    title:string;
+  @ApiProperty()
+  @Column()
+  title: string;
 
-    @ApiProperty()
-    description:string;
-    @ApiProperty({enum:['pending ','completed']}
-        status:'pending' | 'completed';
-    )
+  @ApiProperty()
+  @Column()
+  description: string;
+
+  @ApiProperty({ enum: ['pending', 'completed'] })
+  @Column({
+    type: 'enum',
+    enum: ['pending', 'completed'],
+    default: 'pending',
+  })
+  status: 'pending' | 'completed';
 }
